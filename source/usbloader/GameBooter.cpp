@@ -52,6 +52,7 @@
 #include "memory/memory.h"
 #include "utils/StringTools.h"
 #include "homebrewboot/BootHomebrew.h"
+#include "network/discord_rpc.h"
 #include "GameBooter.hpp"
 #include "NandEmu.h"
 #include "SavePath.h"
@@ -289,6 +290,8 @@ int GameBooter::BootGame(struct discHdr *gameHdr, const s8 useOcarina)
 
 	if (Settings.Wiinnertag)
 		Wiinnertag::TagGame((const char *)gameHeader.id);
+
+	Discord_UpdatePresence((const char *)gameHeader.id);
 
 	if (gameHeader.type == TYPE_GAME_GC_IMG || gameHeader.type == TYPE_GAME_GC_DISC || gameHdr->type == TYPE_GAME_GC_EXTRACTED)
 		return BootGCMode(&gameHeader);
