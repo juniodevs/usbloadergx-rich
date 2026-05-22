@@ -24,7 +24,6 @@
 #include "wad/nandtitle.h"
 #include "StartUpProcess.h"
 #include "sys.h"
-#include "network/discord_rpc.h"
 
 extern "C"
 {
@@ -50,8 +49,6 @@ int main(int argc, char *argv[])
 
 	if(StartUpProcess::Run(argc, argv) < 0)
 		return -1;
-
-	Discord_ClearPresence();
 
 	MainMenu(MENU_DISCLIST);
 	return 0;
